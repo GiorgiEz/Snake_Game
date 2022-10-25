@@ -5,8 +5,8 @@ pause, score = False, 0
 
 class Snake:
     def __init__(self, length, screen):
-        self.posX = [200]*length
-        self.posY = [200]*length
+        self.posX = [200] * length
+        self.posY = [200] * length
         self.length = length
         self.direction = "RIGHT"
         self.block = pygame.image.load("images/square.png").convert_alpha()
@@ -55,7 +55,7 @@ class Food:
         self.y = random.randint(80, 610)
 
     def drawFood(self):
-        apple = pygame.image.load("images/apple.jpg").convert_alpha()
+        apple = pygame.image.load("images/apple1.png").convert_alpha()
         apple = pygame.transform.rotozoom(apple, 0, 0.7)
         self.screen.blit(apple, (self.x, self.y))
 
@@ -71,6 +71,7 @@ class Run:
         self.screen = None
         self.snake = None
         self.food = None
+
     def run(self):
         global pause
         self.init()
@@ -88,7 +89,7 @@ class Run:
             except Exception:
                 self.deathScreen()
             if self.snake.posX[0] >= 1110 or self.snake.posX[0] < 80 or \
-            self.snake.posY[0] >= 620 or self.snake.posY[0] < 60:
+                    self.snake.posY[0] >= 620 or self.snake.posY[0] < 60:
                 self.deathScreen()
 
     def deathScreen(self):
@@ -124,7 +125,7 @@ class Run:
                 pause = False
             if not pause:
                 if keys[pygame.K_a] or keys[pygame.K_LEFT]:
-                    if self.snake.direction != "RIGHT": 
+                    if self.snake.direction != "RIGHT":
                         self.snake.move_left()
                 if keys[pygame.K_w] or keys[pygame.K_UP]:
                     if self.snake.direction != "DOWN":
@@ -137,7 +138,7 @@ class Run:
                         self.snake.move_right()
 
     def render(self):
-        self.screen.fill((0,165,0))
+        self.screen.fill((0, 165, 0))
         self.snake.drawSnake()
         self.food.drawFood()
         self.display_score()
@@ -165,13 +166,13 @@ class Run:
 
     @staticmethod
     def drawBarriers(screen):
-        pygame.draw.line(screen, (255,200,0), [70, 54], [1130, 54], 10)
-        pygame.draw.line(screen, (255,200,0), [70, 50], [70, 650], 10)
-        pygame.draw.line(screen, (255,200,0), [1130, 650], [1130, 50], 10)
-        pygame.draw.line(screen, (255,200,0), [1130, 645], [70, 645], 10)
+        pygame.draw.line(screen, (255, 200, 0), [70, 54], [1130, 54], 10)
+        pygame.draw.line(screen, (255, 200, 0), [70, 50], [70, 650], 10)
+        pygame.draw.line(screen, (255, 200, 0), [1130, 650], [1130, 50], 10)
+        pygame.draw.line(screen, (255, 200, 0), [1130, 645], [70, 645], 10)
 
     def game_over(self):
-        self.screen.fill((0,170,0))
+        self.screen.fill((0, 170, 0))
         font = pygame.font.SysFont('georgia', 50)
         font1 = pygame.font.SysFont('georgia', 30)
         showScore = font.render(f"Game over! You score is {score}", True, (0, 0, 255))
@@ -182,7 +183,7 @@ class Run:
 
     def display_score(self):
         font = pygame.font.SysFont('georgia', 30)
-        message = font.render(f"score: {self.snake.length-5}", True, (0, 0, 255))
+        message = font.render(f"score: {self.snake.length - 5}", True, (0, 0, 255))
         self.screen.blit(message, (80, 5))
 
     def resetGame(self):
