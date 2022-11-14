@@ -2,7 +2,6 @@ import pygame, random
 
 pause, score = False, 0
 
-
 class Snake:
     def __init__(self, length, screen):
         self.posX = [200] * length
@@ -55,7 +54,7 @@ class Food:
         self.y = random.randint(80, 610)
 
     def drawFood(self):
-        apple = pygame.image.load("images/apple1.png").convert_alpha()
+        apple = pygame.image.load("images/apple.png").convert_alpha()
         apple = pygame.transform.rotozoom(apple, 0, 0.7)
         self.screen.blit(apple, (self.x, self.y))
 
@@ -138,7 +137,7 @@ class Run:
                         self.snake.move_right()
 
     def render(self):
-        self.screen.fill((0, 165, 0))
+        self.screen.fill((0, 150, 0))
         self.snake.drawSnake()
         self.food.drawFood()
         self.display_score()
@@ -194,3 +193,4 @@ class Run:
 if __name__ == "__main__":
     app = Run()
     app.run()
+
